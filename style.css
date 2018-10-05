@@ -1,0 +1,38 @@
+html {
+	background-image: url('https://rfclipart.com/image/big/e2-e4-d2/green-schoolboard-with-mathematical-calculations-Download-Royalty-free-Vector-File-EPS-118908.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+	display: flex;
+} 
+
+body {
+	background-image: linear-gradient(to bottom right, 
+		rgba(255, 26, 26, 0.6), rgba(255, 255, 51, 0.6));
+	font-family: arial, sans-serif;
+	margin: auto;
+	padding: 20px;
+	border: 5px rgba(128, 128, 128, 0.3) solid;
+}
+
+#display {
+	font-size: 35px;
+	height: 60px;
+	width: 250px;
+	margin: 3px;
+	text-align: right;
+}
+
+.button {
+	font-size: 25px;
+	height: 60px;
+	width: 60px;
+}
+
+#clear, #zero {
+	width: 125px;
+}
+
+#equals {
+	height: 125px;
+}

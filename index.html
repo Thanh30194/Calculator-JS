@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>JS CALCULATOR</title>
+</head>
+<body>
+	<form>
+		<input type="text" id="display" value="0">
+	</form>
+	<table>
+		<tr>
+			<td colspan="2"><input class="button" type="button" id="clear" value="AC"></td>
+			<td><input class="button operator" type="button" id="divide" value="/"></td>
+			<td><input class="button operator" type="button" id="multiply" value="*"></td>
+		</tr>
+		<tr>
+			<td><input class="button number" type="button" id="seven" value="7"></td>
+			<td><input class="button number" type="button" id="eight" value="8"></td>
+			<td><input class="button number" type="button" id="nine" value="9"></td>
+			<td><input class="button operator" type="button" id="subtract" value="-"></td>
+		</tr>
+		<tr>
+			<td><input class="button number" type="button" id="four" value="4"></td>
+			<td><input class="button number" type="button" id="five" value="5"></td>
+			<td><input class="button number" type="button" id="six" value="6"></td>
+			<td><input class="button operator" type="button" id="add" value="+"></td>
+		</tr>
+		<tr>
+			<td><input class="button number" type="button" id="one" value="1"></td>
+			<td><input class="button number" type="button" id="two" value="2"></td>
+			<td><input class="button number" type="button" id="three" value="3"></td>
+			<td rowspan="2"><input class="button" type="button" id="equals" value="="></td>
+		</tr>
+		</tr>
+		<tr>
+			<td colspan="2"><input class="button number" type="button" id="zero" value="0"></td>
+			<td><input class="button" type="button" id="decimal" value="."></td>
+	</table>
+</body>
+<script type="text/javascript" src="calc.js"></script>
+<script type="text/javascript" src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</html>
