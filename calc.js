@@ -2,32 +2,30 @@
 const handleEquals = (input) => {
 	// turn input to an array of number and operator
 	let box = input.split(' ').map(inputData => {
-		if (inputData.match(/\d/)) {
-			return parseFloat(inputData);
-		} else {
-			return inputData;
-		}
+		return inputData.match(/\d/) ? parseFloat(inputData) : inputData;
 	});
-	// calculate all the multiply and divide 
-    while (box.indexOf('*') != -1 || box.indexOf('/') != -1) {
-        for (let i = 1; i < box.length; i++) {
-            if (box[i] === '*') {
-                box.splice(i - 1, 3, box[i-1] * box[i+1]);
-            } else if (box[i] === '/') {
-                box.splice(i - 1, 3, box[i-1] / box[i+1]);
-            }
-        }
-    }
-    // calculate all the addition and subtract
-    while (box.indexOf('+') != -1 || box.indexOf('-') != -1) {
-        for (let i = 1; i < box.length; i++) {
-            if (box[i] === '+') {
-                box.splice(i - 1, 3, box[i-1] + box[i+1]);
-            } else if (box[i] === '-') {
-                box.splice(i - 1, 3, box[i-1] - box[i+1]);
-            }
-        }
-    }
+	// loop through the expression to calculate
+    for (let i = 0; i < box.length; i++) {
+    	// set i = 0 to loop from the first index until no operator left
+        // calculate multiply and divide 
+    	if (box[i] == '*') {
+    		box.splice(i - 1, 3, box[i-1] * box[i+1]);
+    		i = 0;
+    	} else if (box[i] == '/') {
+    		box.splice(i - 1, 3, box[i-1] / box[i+1]);
+    		i = 0;
+    	}
+    	// calculate addition and subtraction after finishing '*' and '/'
+    	if (box.indexOf('*') == -1 && box.indexOf('/') == -1) {
+	    	if (box[i] == '+') {
+	            box.splice(i - 1, 3, box[i-1] + box[i+1]);
+	            i = 0;
+	        } else if (box[i] == '-') {
+	            box.splice(i - 1, 3, box[i-1] - box[i+1]);
+	            i = 0;
+	        } 
+	    }
+	}      
     return box[0];
 };
 
@@ -91,6 +89,7 @@ decimalButton.addEventListener('click', () => {
 		display.value += decimalButton.value;
 		countDot = 0;
 		// the expression is no longer at the beginning point
+		// if a dot is added
 		startExpression = false;
 	} 
 });
