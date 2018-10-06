@@ -90,9 +90,9 @@ decimalButton.addEventListener('click', () => {
 	if (countDot == 1 && checkNumber.match(/\d/)) {
 		display.value += decimalButton.value;
 		countDot = 0;
-	}
-	// the expression is no longer at the beginning point
-	startExpression = false;
+		// the expression is no longer at the beginning point
+		startExpression = false;
+	} 
 });
 
 const equalsButton = document.querySelector('#equals');
