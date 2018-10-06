@@ -29,50 +29,41 @@ const handleEquals = (input) => {
     return box[0];
 };
 
+const display = document.querySelector('#display');
 var countDot = 1; // count the number of dot left to be added
 var startExpression = true; // mark the beginning point 
-const display = document.querySelector('#display');
 
-const clearButton = document.querySelector('#clear').addEventListener('click', () => {
-	// reset everything
+// AC button
+document.querySelector('#clear').addEventListener('click', () => {
 	display.value = '0'; 
 	countDot = 1;
 	startExpression = true;
 });
 
-const operatorButtons = document.querySelectorAll('.operator');
-operatorButtons.forEach((button) => {
+// operator buttons
+document.querySelectorAll('.operator').forEach((button) => {
 	button.addEventListener('click', () => {
 		// remove the previous operator if a new one is clicked
-		if (display.value.length > 2) {
-			let checkOperator = display.value[display.value.length - 2];
-			if (checkOperator.match(/[\+\-\*\/]/)) {
-				display.value = display.value.slice(0, display.value.length - 3);
-			} 
-		} 
-		// add operator
-		display.value += ' ' + button.value + ' ';
-		// can make a new float number after each operator
-		if (countDot == 0) {
-			countDot = 1;
+		if (display.value.slice(-3).match(/^\s[\+\-\*\/]\s$/)) {
+			display.value = display.value.slice(0, -3);
 		}
+		display.value += ' ' + button.value + ' '; // add operator		
+		countDot = 1; // can make a new float number after each operator		
 		// the expression is no longer at the beginning point
 		startExpression = false;
 	});
 });
 
-const numberButtons = document.querySelectorAll('.number');
-numberButtons.forEach((button) => {
+// number buttons
+document.querySelectorAll('.number').forEach((button) => {
 	button.addEventListener('click', () => {
-		// start a new calculation if a number being clicked,
-		// it can start with a float number
+		// start a new calculation if a number being clicked
 		if (startExpression == true) {
 			display.value = button.value;
-			countDot = 1;
+			countDot = 1; // it can start with a float number
 		} else if (display.value == '0' || display.value.slice(-2) == ' 0') {
 			// only a number which is > -1 and < 1 can start with a '0'   
-			display.value = display.value.slice(0, display.value.length - 1);
-			display.value += button.value;
+			display.value = display.value.slice(0, -1) + button.value;
 		} else {
 			display.value += button.value;
 		}
@@ -81,21 +72,19 @@ numberButtons.forEach((button) => {
 	});
 });
 
-const decimalButton = document.querySelector('#decimal');
-decimalButton.addEventListener('click', () => {
-	let checkNumber = display.value[display.value.length - 1]; 
+// decimal button
+document.querySelector('#decimal').addEventListener('click', () => {
 	//only accept one dot behind a number
-	if (countDot == 1 && checkNumber.match(/\d/)) {
-		display.value += decimalButton.value;
+	if (countDot == 1 && display.value.slice(-1).match(/\d/)) {
+		display.value += '.';
 		countDot = 0;
-		// the expression is no longer at the beginning point
-		// if a dot is added
+		// if a dot is added, the expression is no longer at the beginning point
 		startExpression = false;
 	} 
 });
 
-const equalsButton = document.querySelector('#equals');
-equalsButton.addEventListener('click', () => {
+// equals button
+document.querySelector('#equals').addEventListener('click', () => {
 	// calculate and display the result, using function created on top
 	var result = handleEquals(display.value);
 	result = Math.round(result * 1000000000) / 1000000000;
